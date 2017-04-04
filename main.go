@@ -1,17 +1,17 @@
 package main
 
 import (
-	"fmt"
 	"bufio"
 	"os"
 	"strings"
-	"io/ioutil"
 	"log"
+	"github.com/biezhi/witty/utils"
+	"fmt"
 )
 
 func ReadInput() {
 	inputReader := bufio.NewReader(os.Stdin)
-	fmt.Print("You: ")
+	fmt.Print(utils.Colorize("You: ", "note"))
 	input, err := inputReader.ReadString('\n')
 	if err == nil {
 		if strings.EqualFold("quit", strings.TrimSpace(input)) ||
@@ -19,7 +19,8 @@ func ReadInput() {
 			os.Exit(3)
 		} else {
 			result := tlAI(input)
-			fmt.Printf("Robot: %s\n", result)
+			fmt.Print(utils.Colorize("Robot: ", "succ"))
+			fmt.Print(utils.Colorize(result, "fail"), "\n")
 		}
 	}
 }

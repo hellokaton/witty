@@ -8,37 +8,20 @@ import (
 	"log"
 	"time"
 	"strings"
-	"io/ioutil"
+	"github.com/biezhi/witty/utils"
 )
 
 // tuling api key
 var tlKey string
 
-var configMap = map[string]string{}
-
-func readFile(filename string) (map[string]string, error) {
-	bytes, err := ioutil.ReadFile(filename)
-	if err != nil {
-		fmt.Println("ReadFile: ", err.Error())
-		return nil, err
-	}
-
-	if err := json.Unmarshal(bytes, &configMap); err != nil {
-		fmt.Println("Unmarshal: ", err.Error())
-		return nil, err
-	}
-	return configMap, nil
-}
-
 // init config
 func InitConf() error {
-	_, err := readFile("config.json")
+	configMap, err := utils.LoadConfig("config.json")
 	if err != nil {
 		fmt.Println("readFile: ", err.Error())
 		return err
 	}
 	tlKey = configMap["tlKey"]
-	fmt.Println("tlKey =", tlKey)
 	return nil
 }
 
