@@ -5,13 +5,12 @@ import (
 	"os"
 	"strings"
 	"log"
-	"github.com/biezhi/witty/utils"
-	"fmt"
+	"github.com/biezhi/agon/color"
 )
 
 func ReadInput() {
 	inputReader := bufio.NewReader(os.Stdin)
-	fmt.Print(utils.Colorize("You: ", "note"))
+	color.Print(color.Yellow, "You: ")
 	input, err := inputReader.ReadString('\n')
 	if err == nil {
 		if strings.EqualFold("quit", strings.TrimSpace(input)) ||
@@ -19,8 +18,8 @@ func ReadInput() {
 			os.Exit(3)
 		} else {
 			result := tlAI(input)
-			fmt.Print(utils.Colorize("Robot: ", "succ"))
-			fmt.Print(utils.Colorize(result, "fail"), "\n")
+			color.Print(color.Green, "Robot: ")
+			color.Println(color.Purple, result)
 		}
 	}
 }

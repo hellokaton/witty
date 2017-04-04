@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"net/url"
 	"net/http"
-	"encoding/json"
 	"log"
 	"time"
 	"strings"
-	"github.com/biezhi/witty/utils"
+	ajson "github.com/biezhi/agon/json"
+	"encoding/json"
 )
 
 // tuling api key
@@ -16,7 +16,7 @@ var tlKey string
 
 // init config
 func InitConf() error {
-	configMap, err := utils.LoadConfig("config.json")
+	configMap, err := ajson.LoadJson("config.json")
 	if err != nil {
 		fmt.Println("readFile: ", err.Error())
 		return err
